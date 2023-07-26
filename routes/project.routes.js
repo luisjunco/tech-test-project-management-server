@@ -5,7 +5,9 @@ const mongoose = require("mongoose");
 const Project = require("../models/Project.model");
 const Task = require("../models/Task.model");
 
-//  POST /api/projects  -  Creates a new project
+
+
+// POST /api/projects
 router.post("/projects", (req, res, next) => {
   const { title, description } = req.body;
 
@@ -14,7 +16,10 @@ router.post("/projects", (req, res, next) => {
     .catch((err) => res.json(err));
 });
 
-//  GET /api/projects -  Retrieves all of the projects
+
+
+
+// GET /api/projects
 router.get("/projects", (req, res, next) => {
   Project.find()
     .populate("tasks")
@@ -22,7 +27,10 @@ router.get("/projects", (req, res, next) => {
     .catch((err) => res.json(err));
 });
 
-//  GET /api/projects/:projectId -  Retrieves a specific project by id
+
+
+
+// GET /api/projects/:projectId
 router.get("/projects/:projectId", (req, res, next) => {
   const { projectId } = req.params;
 
@@ -31,15 +39,16 @@ router.get("/projects/:projectId", (req, res, next) => {
     return;
   }
 
-  // Each Project document has `tasks` array holding `_id`s of Task documents
-  // We use .populate() method to get swap the `_id`s for the actual Task documents
   Project.findById(projectId)
     .populate("tasks")
     .then((project) => res.status(200).json(project))
     .catch((error) => res.json(error));
 });
 
-// PUT  /api/projects/:projectId  -  Updates a specific project by id
+
+
+
+// PUT /api/projects/:projectId
 router.put("/projects/:projectId", (req, res, next) => {
   const { projectId } = req.params;
 
@@ -53,7 +62,10 @@ router.put("/projects/:projectId", (req, res, next) => {
     .catch((error) => res.json(error));
 });
 
-// DELETE  /api/projects/:projectId  -  Deletes a specific project by id
+
+
+
+// DELETE /api/projects/:projectId
 router.delete("/projects/:projectId", (req, res, next) => {
   const { projectId } = req.params;
 
@@ -70,5 +82,8 @@ router.delete("/projects/:projectId", (req, res, next) => {
     )
     .catch((error) => res.json(error));
 });
+
+
+
 
 module.exports = router;

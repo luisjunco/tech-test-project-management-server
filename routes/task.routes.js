@@ -5,7 +5,10 @@ const mongoose = require("mongoose");
 const Task = require("../models/Task.model");
 const Project = require("../models/Project.model");
 
-//  POST /api/tasks  -  Creates a new task
+
+
+
+// POST /api/tasks
 router.post("/tasks", (req, res, next) => {
   const { title, description, projectId } = req.body;
 
@@ -19,7 +22,10 @@ router.post("/tasks", (req, res, next) => {
     .catch((err) => res.json(err));
 });
 
-//  GET /api/tasks/:taskId  - Retrieves a specific task by id
+
+
+
+// GET /api/tasks/:taskId
 router.get("/tasks/:taskId", (req, res, next) => {
   const { taskId } = req.params;
 
@@ -28,7 +34,11 @@ router.get("/tasks/:taskId", (req, res, next) => {
     .catch((error) => res.json(error));
 });
 
-// PUT  /api/tasks/:taskId  - Updates a specific task by id
+
+
+
+
+// PUT /api/tasks/:taskId
 router.put("/tasks/:taskId", (req, res, next) => {
   const { taskId } = req.params;
 
@@ -42,7 +52,11 @@ router.put("/tasks/:taskId", (req, res, next) => {
     .catch((err) => res.json(err));
 });
 
-//  DELETE /api/tasks/:taskId  - Deletes a specific task by id
+
+
+
+
+// DELETE /api/tasks/:taskId
 router.delete("/tasks/:taskId", (req, res, next) => {
   const { taskId } = req.params;
 
@@ -57,5 +71,8 @@ router.delete("/tasks/:taskId", (req, res, next) => {
     )
     .catch((error) => res.json(error));
 });
+
+
+
 
 module.exports = router;
